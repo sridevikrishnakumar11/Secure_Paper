@@ -498,6 +498,23 @@ Access: View Paper
 When **View Paper** is selected, the system verifies the user's role, approval status, and release time. The encrypted question paper is then decrypted and displayed as a PDF.
 
 ---
+## Screenshots
+
+### Login Page
+
+![Login Page](screenshot/login.png)
+
+### Question Paper Upload
+
+![Question Paper Upload](screenshot/upload.png)
+
+### Administrator Dashboard
+
+![Administrator Dashboard](screenshot/admin.png)
+
+### Exam Centre Dashboard
+
+![Exam Centre Dashboard](screenshot/centre.png)
 
 ## 15. Example User Flow
 
