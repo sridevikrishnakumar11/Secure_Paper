@@ -1,0 +1,360 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Administrator Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            Secure<span>Paper</span>
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/admin">
+                Dashboard
+            </a>
+
+            <a href="/profile">
+                Profile
+            </a>
+
+            <a href="/logout" class="nav-login">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="page">
+
+        <div class="container">
+
+            <!-- ================= HEADER ================= -->
+
+            <div style="margin-bottom: 30px;">
+
+                <h1 class="page-title">
+                    Administrator Dashboard
+                </h1>
+
+                <p class="page-subtitle">
+                    Review and manage submitted examination question papers.
+                </p>
+
+            </div>
+
+
+            <!-- ================= STAT CARDS ================= -->
+
+            <div class="cards">
+
+                <!-- Pending -->
+
+                <div class="stat-card">
+
+                    <div class="stat-title">
+                        Pending Papers
+                    </div>
+
+                    <div class="stat-number">
+                        {{ papers|selectattr("status", "equalto", "pending")|list|length }}
+                    </div>
+
+                </div>
+
+
+                <!-- Security -->
+
+                <div class="stat-card">
+
+                    <div class="stat-title">
+                        Security
+                    </div>
+
+                    <div class="stat-number"
+                         style="
+                         font-size: 20px;
+                         color: #059669;
+                         ">
+
+                        Protected
+
+                    </div>
+
+                </div>
+
+
+                <!-- Access -->
+
+                <div class="stat-card">
+
+                    <div class="stat-title">
+                        Access Level
+                    </div>
+
+                    <div class="stat-number"
+                         style="
+                         font-size: 20px;
+                         color: #2563eb;
+                         ">
+
+                        Administrator
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= QUESTION PAPERS ================= -->
+
+            <div class="card">
+
+                <div style="margin-bottom: 20px;">
+
+                    <h2 style="margin-bottom: 6px;">
+                        Question Papers
+                    </h2>
+
+                    <p style="
+                        color: #6b7280;
+                        font-size: 14px;
+                    ">
+
+                        Review submitted question papers
+                        and approve or reject them.
+
+                    </p>
+
+                </div>
+
+
+                {% if papers %}
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Paper Title
+                                    </th>
+
+                                    <th>
+                                        Exam Date
+                                    </th>
+
+                                    <th>
+                                        Release Time
+                                    </th>
+
+                                    <th>
+                                        Status
+                                    </th>
+
+                                    <th>
+                                        Action
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+                                {% for paper in papers %}
+
+                                    <tr>
+
+                                        <!-- TITLE -->
+
+                                        <td>
+
+                                            <strong>
+                                                {{ paper.title }}
+                                            </strong>
+
+                                        </td>
+
+
+                                        <!-- EXAM DATE -->
+
+                                        <td>
+                                            {{ paper.exam_date }}
+                                        </td>
+
+
+                                        <!-- RELEASE TIME -->
+
+                                        <td>
+                                            {{ paper.release_at }}
+                                        </td>
+
+
+                                        <!-- STATUS -->
+
+                                        <td>
+
+                                            <span class="status {{ paper.status }}">
+
+                                                {{ paper.status|capitalize }}
+
+                                            </span>
+
+                                        </td>
+
+
+                                        <!-- ACTION -->
+
+                                        <td>
+
+                                            {% if paper.status == "pending" %}
+
+                                                <a
+                                                    href="/admin/approve/{{ paper.id }}"
+                                                    class="btn btn-success"
+                                                    style="
+                                                    margin-right: 5px;
+                                                    "
+                                                >
+                                                    ✓ Approve
+                                                </a>
+
+
+                                                <a
+                                                    href="/admin/reject/{{ paper.id }}"
+                                                    class="btn btn-danger"
+                                                >
+                                                    ✕ Reject
+                                                </a>
+
+
+                                            {% elif paper.status == "approved" %}
+
+                                                <span style="
+                                                    color: #047857;
+                                                    font-size: 13px;
+                                                    font-weight: bold;
+                                                ">
+
+                                                    ✓ Approved
+
+                                                </span>
+
+
+                                            {% elif paper.status == "rejected" %}
+
+                                                <span style="
+                                                    color: #b91c1c;
+                                                    font-size: 13px;
+                                                    font-weight: bold;
+                                                ">
+
+                                                    ✕ Rejected
+
+                                                </span>
+
+                                            {% endif %}
+
+                                        </td>
+
+                                    </tr>
+
+                                {% endfor %}
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+
+                {% else %}
+
+                    <!-- ================= EMPTY STATE ================= -->
+
+                    <div style="
+                        text-align: center;
+                        padding: 50px 20px;
+                        background: #f8fafc;
+                        border-radius: 12px;
+                        border: 1px dashed #cbd5e1;
+                    ">
+
+                        <div style="
+                            font-size: 40px;
+                            margin-bottom: 15px;
+                        ">
+                            📄
+                        </div>
+
+
+                        <h3 style="margin-bottom: 8px;">
+                            No Question Papers
+                        </h3>
+
+
+                        <p style="
+                            color: #6b7280;
+                            font-size: 14px;
+                        ">
+
+                            There are currently no question papers
+                            waiting for review.
+
+                        </p>
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer style="
+        text-align: center;
+        padding: 30px;
+        color: #6b7280;
+        font-size: 13px;
+    ">
+
+        SecurePaper © 2026
+        <br>
+
+        Secure Question Paper Management System
+
+    </footer>
+
+</body>
+
+</html>
+

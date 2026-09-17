@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Upload Question Paper</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            Secure<span>Paper</span>
+        </div>
+
+        <div class="nav-links">
+            <a href="/profile">Profile</a>
+            <a href="/upload">Upload Paper</a>
+            <a href="/logout" class="nav-login">Logout</a>
+        </div>
+
+    </nav>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="page">
+
+        <div class="container">
+
+            <div style="margin-bottom: 30px;">
+
+                <h1 class="page-title">
+                    Upload Question Paper
+                </h1>
+
+                <p class="page-subtitle">
+                    Securely upload and schedule your examination question paper.
+                </p>
+
+            </div>
+
+
+            <!-- ================= UPLOAD CARD ================= -->
+
+            <div class="card upload-card">
+
+                <div style="margin-bottom: 25px;">
+
+                    <h2 style="margin-bottom: 8px;">
+                        Paper Details
+                    </h2>
+
+                    <p style="color: #6b7280; font-size: 14px;">
+                        Enter the examination details and upload the question paper.
+                    </p>
+
+                </div>
+
+
+                <form method="POST"
+                      enctype="multipart/form-data">
+
+
+                    <!-- TITLE -->
+
+                    <div class="form-group">
+
+                        <label for="title">
+                            Paper Title
+                        </label>
+
+                        <input
+                            type="text"
+                            id="title"
+                            name="title"
+                            class="form-control"
+                            placeholder="Example: Computer Science - Set A"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- EXAM DATE -->
+
+                    <div class="form-group">
+
+                        <label for="exam_date">
+                            Examination Date & Time
+                        </label>
+
+                        <input
+                            type="datetime-local"
+                            id="exam_date"
+                            name="exam_date"
+                            class="form-control"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- RELEASE DATE -->
+
+                    <div class="form-group">
+
+                        <label for="release_at">
+                            Scheduled Release Date & Time
+                        </label>
+
+                        <input
+                            type="datetime-local"
+                            id="release_at"
+                            name="release_at"
+                            class="form-control"
+                            required
+                        >
+
+                        <small style="
+                            display: block;
+                            margin-top: 7px;
+                            color: #6b7280;
+                        ">
+                            The paper will remain protected until the scheduled release time.
+                        </small>
+
+                    </div>
+
+
+                    <!-- FILE -->
+
+                    <div class="form-group">
+
+                        <label for="paper">
+                            Question Paper
+                        </label>
+
+                        <input
+                            type="file"
+                            id="paper"
+                            name="paper"
+                            class="form-control"
+                            accept=".pdf"
+                            required
+                        >
+
+                        <small style="
+                            display: block;
+                            margin-top: 7px;
+                            color: #6b7280;
+                        ">
+                            Only PDF files are accepted.
+                        </small>
+
+                    </div>
+
+
+                    <!-- SECURITY INFO -->
+
+                    <div style="
+                        background: #eff6ff;
+                        border: 1px solid #bfdbfe;
+                        border-radius: 10px;
+                        padding: 16px;
+                        margin: 25px 0;
+                    ">
+
+                        <strong style="color: #1d4ed8;">
+                            🔒 Secure Upload
+                        </strong>
+
+                        <p style="
+                            margin-top: 6px;
+                            color: #475569;
+                            font-size: 13px;
+                            line-height: 1.6;
+                        ">
+                            Your question paper will be encrypted and its
+                            SHA-256 hash will be generated to verify file
+                            integrity.
+                        </p>
+
+                    </div>
+
+
+                    <!-- BUTTON -->
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                        style="width: 100%; padding: 13px;"
+                    >
+                        🔐 Upload Securely
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer style="
+        text-align: center;
+        padding: 25px;
+        color: #6b7280;
+        font-size: 13px;
+    ">
+
+        SecurePaper © 2026 |
+        Secure Question Paper Management System
+
+    </footer>
+
+</body>
+</html>
+

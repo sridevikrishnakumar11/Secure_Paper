@@ -1,0 +1,641 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>SecurePaper | Secure Question Paper Management</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        Secure<span>Paper</span>
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="#home">
+            Home
+        </a>
+
+        <a href="#about">
+            About
+        </a>
+
+        <a href="#security">
+            Security
+        </a>
+
+        <a href="#signin"
+           class="nav-login">
+            Sign In
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ================= HOME ================= -->
+
+<section id="home"
+         style="
+         min-height: 620px;
+         display: flex;
+         align-items: center;
+         background: linear-gradient(135deg, #111827, #1e3a8a);
+         color: white;
+         ">
+
+    <div class="container"
+         style="
+         display: grid;
+         grid-template-columns: 1.3fr 0.7fr;
+         gap: 60px;
+         align-items: center;
+         ">
+
+
+        <!-- HERO TEXT -->
+
+        <div>
+
+            <div style="
+                display: inline-block;
+                padding: 8px 14px;
+                background: rgba(255,255,255,0.1);
+                border: 1px solid rgba(255,255,255,0.2);
+                border-radius: 30px;
+                margin-bottom: 20px;
+                font-size: 13px;
+                ">
+
+                🔐 Secure Examination Management
+
+            </div>
+
+
+            <h1 style="
+                font-size: 52px;
+                line-height: 1.1;
+                margin-bottom: 20px;
+                ">
+
+                Secure Question Paper
+                <span style="color: #60a5fa;">
+                    Management System
+                </span>
+
+            </h1>
+
+
+            <p style="
+                color: #d1d5db;
+                font-size: 18px;
+                line-height: 1.7;
+                max-width: 650px;
+                margin-bottom: 30px;
+                ">
+
+                A secure platform for uploading, protecting,
+                approving and controlling the release of
+                examination question papers.
+
+            </p>
+
+
+            <a href="#signin"
+               class="btn btn-primary"
+               style="
+               display: inline-block;
+               padding: 13px 25px;
+               ">
+
+                Sign In →
+
+            </a>
+
+        </div>
+
+
+
+        <!-- SECURITY CARD -->
+
+        <div style="
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 20px;
+            padding: 35px;
+            backdrop-filter: blur(10px);
+            ">
+
+            <div style="
+                font-size: 45px;
+                margin-bottom: 20px;
+                ">
+
+                🛡️
+
+            </div>
+
+
+            <h2 style="
+                margin-bottom: 15px;
+                ">
+
+                Protected by Design
+
+            </h2>
+
+
+            <p style="
+                color: #d1d5db;
+                line-height: 1.7;
+                font-size: 14px;
+                ">
+
+                Question papers are protected using
+                authentication, role-based access,
+                encryption and integrity verification.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= ABOUT ================= -->
+
+<section id="about"
+         style="
+         padding: 90px 0;
+         background: #f4f7fb;
+         ">
+
+    <div class="container">
+
+        <div style="
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 45px;
+            ">
+
+            <h2 style="
+                font-size: 34px;
+                margin-bottom: 12px;
+                ">
+
+                About SecurePaper
+
+            </h2>
+
+
+            <p style="
+                color: #6b7280;
+                line-height: 1.7;
+                ">
+
+                SecurePaper provides controlled and secure
+                question-paper management throughout the
+                examination lifecycle.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="cards">
+
+
+            <!-- QUESTION SETTER -->
+
+            <div class="card">
+
+                <div style="
+                    font-size: 35px;
+                    margin-bottom: 15px;
+                    ">
+
+                    📝
+
+                </div>
+
+
+                <h3 style="margin-bottom: 10px;">
+                    Question Setter
+                </h3>
+
+
+                <p style="
+                    color: #6b7280;
+                    line-height: 1.6;
+                    font-size: 14px;
+                    ">
+
+                    Upload examination papers securely
+                    and specify examination and release
+                    schedules.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- ADMIN -->
+
+            <div class="card">
+
+                <div style="
+                    font-size: 35px;
+                    margin-bottom: 15px;
+                    ">
+
+                    👨‍💼
+
+                </div>
+
+
+                <h3 style="margin-bottom: 10px;">
+                    Administrator
+                </h3>
+
+
+                <p style="
+                    color: #6b7280;
+                    line-height: 1.6;
+                    font-size: 14px;
+                    ">
+
+                    Review submitted papers and control
+                    the approval and release process.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- EXAM CENTRE -->
+
+            <div class="card">
+
+                <div style="
+                    font-size: 35px;
+                    margin-bottom: 15px;
+                    ">
+
+                    🏫
+
+                </div>
+
+
+                <h3 style="margin-bottom: 10px;">
+                    Examination Centre
+                </h3>
+
+
+                <p style="
+                    color: #6b7280;
+                    line-height: 1.6;
+                    font-size: 14px;
+                    ">
+
+                    Access approved question papers only
+                    when they become available for the
+                    examination.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= SECURITY ================= -->
+
+<section id="security"
+         style="
+         padding: 90px 0;
+         background: white;
+         ">
+
+    <div class="container">
+
+
+        <div style="
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 45px;
+            ">
+
+            <h2 style="
+                font-size: 34px;
+                margin-bottom: 12px;
+                ">
+
+                Security
+
+            </h2>
+
+
+            <p style="
+                color: #6b7280;
+                line-height: 1.7;
+                ">
+
+                Multiple security mechanisms help protect
+                examination question papers from unauthorized
+                access and modification.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="cards">
+
+
+            <div class="card">
+
+                <h3 style="margin-bottom: 10px;">
+                    🔐 Encryption
+                </h3>
+
+                <p style="
+                    color: #6b7280;
+                    font-size: 14px;
+                    line-height: 1.6;
+                    ">
+
+                    Question papers are encrypted before
+                    being stored securely.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="card">
+
+                <h3 style="margin-bottom: 10px;">
+                    🔑 Role-Based Access
+                </h3>
+
+                <p style="
+                    color: #6b7280;
+                    font-size: 14px;
+                    line-height: 1.6;
+                    ">
+
+                    Users can access only the functions
+                    permitted for their assigned role.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="card">
+
+                <h3 style="margin-bottom: 10px;">
+                    🧾 SHA-256 Integrity
+                </h3>
+
+                <p style="
+                    color: #6b7280;
+                    font-size: 14px;
+                    line-height: 1.6;
+                    ">
+
+                    A SHA-256 hash helps verify that a
+                    question paper has not been modified.
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= SIGN IN ================= -->
+
+<section id="signin"
+         style="
+         padding: 90px 0;
+         background: #f4f7fb;
+         ">
+
+    <div class="container"
+         style="
+         display: flex;
+         justify-content: center;
+         ">
+
+
+        <div class="login-card"
+             style="
+             width: 430px;
+             ">
+
+
+            <div class="login-logo">
+
+                <div style="
+                    font-size: 40px;
+                    margin-bottom: 10px;
+                    ">
+
+                    🔐
+
+                </div>
+
+
+                <h1>
+                    Welcome Back
+                </h1>
+
+
+                <p>
+                    Sign in to SecurePaper
+                </p>
+
+            </div>
+
+
+
+            <!-- ERROR MESSAGE -->
+
+            {% if error %}
+
+                <div class="alert alert-error">
+
+                    {{ error }}
+
+                </div>
+
+            {% endif %}
+
+
+
+            <!-- LOGIN FORM -->
+
+            <form method="POST"
+                  action="/login">
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        class="form-control"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        class="form-control"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- LOGIN BUTTON -->
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                    style="
+                    width: 100%;
+                    padding: 13px;
+                    ">
+
+                    Sign In Securely
+
+                </button>
+
+
+            </form>
+
+
+            <p style="
+                text-align: center;
+                margin-top: 20px;
+                color: #6b7280;
+                font-size: 12px;
+                ">
+
+                🔒 Your credentials are securely
+                handled by Supabase Authentication.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer style="
+    background: #111827;
+    color: #9ca3af;
+    text-align: center;
+    padding: 30px;
+    font-size: 13px;
+    ">
+
+    <div style="
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 8px;
+        ">
+
+        Secure<span style="color: #60a5fa;">
+            Paper
+        </span>
+
+    </div>
+
+
+    Secure Question Paper Management System
+    <br><br>
+
+    © 2026 SecurePaper. All rights reserved.
+
+</footer>
+
+
+</body>
+</html>
+

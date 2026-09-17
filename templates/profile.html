@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | SecurePaper</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+
+        <div class="logo">
+            SecurePaper
+        </div>
+
+        <div class="nav-links">
+            <a href="/profile">My Profile</a>
+
+            {% if profile.role == "question_setter" %}
+                <a href="/upload">Upload Paper</a>
+
+            {% elif profile.role == "administrator" %}
+                <a href="/admin">Admin Dashboard</a>
+
+            {% elif profile.role == "exam_centre" %}
+                <a href="/centre">Exam Centre</a>
+            {% endif %}
+
+            <a href="/logout">Logout</a>
+        </div>
+
+    </nav>
+
+
+    <!-- Profile Page -->
+
+    <main class="profile-page">
+
+        <div class="profile-card-new">
+
+            <!-- Profile Header -->
+
+            <div class="profile-header-new">
+
+                <div class="profile-avatar">
+                    👤
+                </div>
+
+                <h1>My Profile</h1>
+
+                <p>
+                    Manage and view your SecurePaper account information
+                </p>
+
+            </div>
+
+
+            <!-- User Information -->
+
+            <div class="profile-details">
+
+                <div class="profile-detail-row">
+
+                    <div class="detail-icon">
+                        👤
+                    </div>
+
+                    <div class="detail-content">
+                        <span>Full Name</span>
+                        <strong>{{ profile.full_name }}</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="profile-detail-row">
+
+                    <div class="detail-icon">
+                        ✉️
+                    </div>
+
+                    <div class="detail-content">
+                        <span>Email Address</span>
+                        <strong>{{ email }}</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="profile-detail-row">
+
+                    <div class="detail-icon">
+                        🛡️
+                    </div>
+
+                    <div class="detail-content">
+                        <span>Account Role</span>
+
+                        <strong>
+                            {% if profile.role == "question_setter" %}
+                                Question Setter
+                            {% elif profile.role == "administrator" %}
+                                Administrator
+                            {% elif profile.role == "exam_centre" %}
+                                Exam Centre
+                            {% endif %}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="profile-detail-row">
+
+                    <div class="detail-icon">
+                        🔑
+                    </div>
+
+                    <div class="detail-content">
+
+                        <span>User ID</span>
+
+                        <strong class="user-id">
+                            {{ profile.id }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Role Section -->
+
+            <div class="profile-role-section">
+
+                {% if profile.role == "question_setter" %}
+
+                    <div class="role-info">
+                        <span class="role-symbol">📤</span>
+
+                        <div>
+                            <h3>Question Setter</h3>
+                            <p>
+                                Upload and securely submit question papers
+                                for administrator approval.
+                            </p>
+                        </div>
+                    </div>
+
+                    <a href="/upload" class="profile-main-btn">
+                        Upload Question Paper →
+                    </a>
+
+
+                {% elif profile.role == "administrator" %}
+
+                    <div class="role-info">
+                        <span class="role-symbol">🛡️</span>
+
+                        <div>
+                            <h3>Administrator</h3>
+                            <p>
+                                Review submitted question papers and manage
+                                approval or rejection.
+                            </p>
+                        </div>
+                    </div>
+
+                    <a href="/admin" class="profile-main-btn">
+                        Open Admin Dashboard →
+                    </a>
+
+
+                {% elif profile.role == "exam_centre" %}
+
+                    <div class="role-info">
+                        <span class="role-symbol">🏫</span>
+
+                        <div>
+                            <h3>Exam Centre</h3>
+                            <p>
+                                Access approved question papers released
+                                for your examination centre.
+                            </p>
+                        </div>
+                    </div>
+
+                    <a href="/centre" class="profile-main-btn">
+                        Open Exam Centre →
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </main>
+
+</body>
+</html>

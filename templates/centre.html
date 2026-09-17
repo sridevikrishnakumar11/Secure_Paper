@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Exam Centre | SecurePaper</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            SecurePaper
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/profile">
+                My Profile
+            </a>
+
+            <a href="/centre">
+                Exam Centre
+            </a>
+
+            <a href="/logout">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <div class="centre-container">
+
+        <!-- Header -->
+
+        <div class="centre-header">
+
+            <div class="centre-icon">
+                🏫
+            </div>
+
+            <h1>
+                Exam Centre Dashboard
+            </h1>
+
+            <p>
+                Welcome,
+                <strong>{{ profile.full_name }}</strong>
+            </p>
+
+            <span class="role-badge">
+                Exam Centre
+            </span>
+
+        </div>
+
+
+        <!-- Question Papers -->
+
+        <div class="papers-card">
+
+            <div class="papers-header">
+
+                <div>
+
+                    <h2>
+                        📄 Available Question Papers
+                    </h2>
+
+                    <p>
+                        Approved question papers available for your examination centre.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            {% if papers %}
+
+                <div class="paper-list">
+
+                    {% for paper in papers %}
+
+                        <div class="paper-item">
+
+                            <!-- Icon -->
+
+                            <div class="paper-icon">
+                                📑
+                            </div>
+
+
+                            <!-- Details -->
+
+                            <div class="paper-details">
+
+                                <h3>
+                                    {{ paper.title }}
+                                </h3>
+
+
+                                <div class="paper-info">
+
+                                    <span>
+                                        📅 Exam Date:
+                                        <strong>
+                                            {{ paper.exam_date }}
+                                        </strong>
+                                    </span>
+
+
+                                    {% if paper.release_status == "released" %}
+
+                                        <span class="released">
+                                            🟢 Released
+                                        </span>
+
+                                    {% else %}
+
+                                        <span class="scheduled">
+                                            🔒 Scheduled
+                                        </span>
+
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Action -->
+
+                            <div class="paper-action">
+
+                                {% if paper.release_status == "released" %}
+
+                                    <a
+                                        href="/view-paper/{{ paper.id }}"
+                                        class="view-btn">
+                                        View Paper
+                                    </a>
+
+                                {% else %}
+
+                                    <span class="locked-btn">
+                                        🔒 Not Released
+                                    </span>
+
+                                {% endif %}
+
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+            {% else %}
+
+                <!-- No Papers -->
+
+                <div class="empty-papers">
+
+                    <div class="empty-icon">
+                        📂
+                    </div>
+
+                    <h3>
+                        No Question Papers Available
+                    </h3>
+
+                    <p>
+                        No approved question papers are currently available
+                        for the exam centre.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</body>
+</html>
